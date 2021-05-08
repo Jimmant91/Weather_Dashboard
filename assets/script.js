@@ -1,0 +1,6 @@
+var cityInput = $("#city-input")
+var currentCity = $("#current-city")
+var temperature = $("#temp")
+var humidity = $("#humidity")
+var windSpeed = $("#wind-speed")
+var uvIndex = $("#uv-index")
