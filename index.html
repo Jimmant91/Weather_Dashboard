@@ -32,6 +32,7 @@
                     </form>
                 </section>
 
+                <!--weather display-->
                 <section class="col-12 col-md-8 col-lg-9 p-2">
                     <div class="container">
                         <h1 class="text-lg-left" id="current-city"></h1>
@@ -43,46 +44,45 @@
                         <strong>UV Index: </strong><span id="uv-index"></span>
                     </div>
 
-                    <div class="d-flex row forecast my-3">
+                    <div class="d-flex row my-3">
                         <h2 class="col-md-12 mb-5"> 5-Day Forecast: </h2>
-                        <div class="d-flex row col-md-12 pl-5">
+                        <div class="d-flex row col-md-12 pl-5" id="weather-cards">
               
-                          <div class="col-12 col-xl border border-dark mx-2 forecast-bg text-white">
+                          <div class="col-12 col-xl border border-dark mx-2 text-white">
                             <div class="date h5">DATE</div>
                             <img class='icon'>
                             <div>Temp: <span class="temp"></span></div>
                             <div>Wind: <span class="wind"></span></div>
                             <div>Humidity: <span class="humidity"></span></div>
                           </div>
-                          <div class="col-12 col-xl border border-dark mx-2 forecast-bg text-white">
+                          <div class="col-12 col-xl border border-dark mx-2 text-white">
                             <div class="date h5">DATE</div>
                             <img class='icon'>
                             <div>Temp: <span class="temp"></span></div>
                             <div>Wind: <span class="wind"></span></div>
                             <div>Humidity: <span class="humidity"></span></div>
                           </div>
-                          <div class="col-12 col-xl border border-dark mx-2 forecast-bg text-white">
+                          <div class="col-12 col-xl border border-dark mx-2">
                             <div class="date h5">DATE</div>
                             <img class='icon'>
                             <div>Temp: <span class="temp"></span></div>
                             <div>Wind: <span class="wind"></span></div>
                             <div>Humidity: <span class="humidity"></span></div>
                           </div>
-                          <div class="col-12 col-xl border border-dark mx-2 forecast-bg text-white">
+                          <div class="col-12 col-xl border border-dark mx-2">
                             <div class="date h5">DATE</div>
                             <img class='icon'>
                             <div>Temp: <span class="temp"></span></div>
                             <div>Wind: <span class="wind"></span></div>
                             <div>Humidity: <span class="humidity"></span></div>
                           </div>
-                          <div class="col-12 col-xl border border-dark mx-2 forecast-bg text-white">
+                          <div class="col-12 col-xl border border-dark mx-2">
                             <div class="date h5">DATE</div>
                             <img class='icon'>
                             <div>Temp: <span class="temp"></span></div>
                             <div>Wind: <span class="wind"></span></div>
                             <div>Humidity: <span class="humidity"></span></div>
                           </div>
-                        </div>
                         </div>
                     </div>
                 </section>
@@ -102,6 +102,6 @@
         <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
         </script>
-        <script src="/assets/script.js" async defer></script>
+        <script src="./assets/script.js" async defer></script>
     </body>
 </html>
