@@ -1,6 +1,6 @@
 # Weather Dashboard
 
-## Link: <a href="https://github.com/Jimmant91/Weather_Dashboard">Weather Dashboard</a>
+## Link: <a href=https://jimmant91.github.io/Weather_Dashboard/">Weather Dashboard</a>
 
 ## About
 
