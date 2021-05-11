@@ -118,3 +118,102 @@ function getFiveDay(city, unixTime) {
         }
     })
 }
+
+// AJAX CALL TO GET THE UV INFO
+function getUVIndex(lat, lon) {
+    var queryURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+
+        var index = response.value
+
+        //SETS UV TEXT 
+        $('#uv').text(index);
+
+        //  change background of UV index depending on severity
+        if (index < 3) {
+            $('#uv').attr('class', 'green');
+        } else if (index < 6) {
+            $('#uv').attr('class', 'yellow');
+        } else if (index < 8) {
+            $('#uv').attr('class', 'orange');
+        } else {
+            $('#uv').attr('class', 'red');
+        }
+
+
+    })
+}
+
+//LOADING DATA FOM STORAGE 
+function loadData() {
+    var storedCities = JSON.parse(localStorage.getItem('cities'));
+
+    if (storedCities === null) {
+        navigator.geolocation.getCurrentPosition(getLocalWeather);
+    } else {
+        // ADDS A LIST ITEM TO SEARCH DISPLAY
+        for (var i = 0; i < storedCities.length; i++) {
+            citiesArray.push(storedCities[i])
+            var p = $('<p>').text(storedCities[i]);
+            p.addClass('list-item');
+            $('#search-display').prepend(p);
+        };
+    };
+
+    getCurrentWeather(storedCities[storedCities.length - 1]);
+}
+
+// // SAVING DATA TO LOCAL STORAGE
+// function storeData(city) {
+//     // pushes new city query into array and puts array into local storage
+//     if (!citiesArray.includes(city)) {
+//         citiesArray.push(city);
+//         localStorage.setItem('cities', JSON.stringify(citiesArray));
+
+//         // ADDS A LIST ITEM TO SEARCH DISPLAY
+//         var p = $('<p>').text(city);
+//         p.addClass('list-item');
+//         $('#search-display').prepend(p);
+//     }
+// }
+
+// // CLEARS DATA FORM STORAGE
+// function clearData() {
+//     citiesArray = [];
+//     localStorage.clear();
+//     $('#search-display').html('');
+// }
+
+// EVENT FOR THE SUBMIN BTN
+$('#searchBtn').on('click', function () {
+
+    var cityInput = $('#search-bar').val();
+    var city = cityInput.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+
+    });
+    $("#search-bar").val(""); /////// clears searching bar..
+
+    // CURRENT WEATHER FOR 5 DAYS
+    getCurrentWeather(city);
+})
+
+// event listener for previously searched list
+$('#search-bar').on('click', '.list-item', function () { ////////#search bar instead of search-display
+    // calls weather functions
+    var city = $(this).text();
+    getCurrentWeather(city)
+
+
+
+})
+
+// // event listener for clear button
+// $('#clear-button').on('click', clearData);
+
+// loads data
+loadData();
