@@ -8,4 +8,4 @@ Using the OpenWeather API, I created a functioning weather dashboard that displa
 
 ## Demo
 
-![Demo](images/Weather Dashboard.gif)
+![Demo](Weather_Dashboard.gif)
