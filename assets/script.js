@@ -152,7 +152,7 @@ function getUVIndex(lat, lon) {
 function loadData() {
     var storedCities = JSON.parse(localStorage.getItem('cities'));
 
-    if (storedCities === null) {
+    if (!storedCities) {
         navigator.geolocation.getCurrentPosition(getLocalWeather);
     } else {
         // ADDS A LIST ITEM TO SEARCH DISPLAY
@@ -167,26 +167,26 @@ function loadData() {
     getCurrentWeather(storedCities[storedCities.length - 1]);
 }
 
-// // SAVING DATA TO LOCAL STORAGE
-// function storeData(city) {
-//     // pushes new city query into array and puts array into local storage
-//     if (!citiesArray.includes(city)) {
-//         citiesArray.push(city);
-//         localStorage.setItem('cities', JSON.stringify(citiesArray));
+// SAVING DATA TO LOCAL STORAGE
+function storeData(city) {
+    // pushes new city query into array and puts array into local storage
+    if (!citiesArray.includes(city)) {
+        citiesArray.push(city);
+        localStorage.setItem('cities', JSON.stringify(citiesArray));
 
-//         // ADDS A LIST ITEM TO SEARCH DISPLAY
-//         var p = $('<p>').text(city);
-//         p.addClass('list-item');
-//         $('#search-display').prepend(p);
-//     }
-// }
+        // ADDS A LIST ITEM TO SEARCH DISPLAY
+        var p = $('<p>').text(city);
+        p.addClass('list-item');
+        $('#search-display').prepend(p);
+    }
+}
 
-// // CLEARS DATA FORM STORAGE
-// function clearData() {
-//     citiesArray = [];
-//     localStorage.clear();
-//     $('#search-display').html('');
-// }
+// CLEARS DATA FORM STORAGE
+function clearData() {
+    citiesArray = [];
+    localStorage.clear();
+    $('#search-display').html('');
+}
 
 // EVENT FOR THE SUBMIN BTN
 $('#searchBtn').on('click', function () {
@@ -212,8 +212,8 @@ $('#search-bar').on('click', '.list-item', function () { ////////#search bar ins
 
 })
 
-// // event listener for clear button
-// $('#clear-button').on('click', clearData);
+// event listener for clear button
+$('#clear-button').on('click', clearData);
 
 // loads data
 loadData();
