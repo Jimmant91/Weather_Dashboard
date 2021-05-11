@@ -91,3 +91,30 @@ function getCurrentWeather(city) {
 
     })
 }
+
+// FORECAST CARDS FOR 5 DAYS 
+function getFiveDay(city, unixTime) {
+    var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        // sets array to start at 12 noon on following day
+        var arrayIndex = 4;
+
+        // FOR LOOP RUNS 5 TIMES FOR 5 DAY WEATHER DATA 
+        for (i = 1; i < 6; i++) {
+            var day = moment.unix(unixTime).add(i, 'days').format('MM-DD-YYYY');
+            var iconURL = `https://openweathermap.org/img/w/${response.list[arrayIndex].weather[0].icon}.png`
+
+            $(`#forecast-date-${i}`).text(day);
+            $(`#forecast-temp-${i}`).text(`${response.list[arrayIndex].main.temp.toFixed(1)} \xB0F`);
+            $(`#forecast-humid-${i}`).text(response.list[arrayIndex].main.humidity + '%');
+            $(`#forecast-image-${i}`).attr('src', iconURL);
+
+            // moves array index up 24 hours
+            arrayIndex += 8;
+        }
+    })
+}
